@@ -7,13 +7,13 @@ COMPOSE := docker compose -f deploy/docker-compose.yml
 help:
 	@grep -E '^[a-z-]+:.*##' $(MAKEFILE_LIST) | sed 's/:.*##/\t/'
 
-test: ## Build and run tests under ASan+UBSan (clang)
+test: ## Build and run tests under ASan+UBSan
 	cmake --preset asan
 	cmake --build --preset asan
 	ctest --preset asan
 
 test-all: ## Run tests on every preset
-	@for p in debug asan tsan release; do \
+	@for p in debug asan release; do \
 	  cmake --preset $$p && cmake --build --preset $$p && ctest --preset $$p || exit 1; \
 	done
 

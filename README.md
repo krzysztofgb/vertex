@@ -9,7 +9,7 @@ Vertex reads raw exchange feeds in different formats. It converts them to one ev
 Install the tools on macOS:
 
 ```sh
-brew install cmake ninja ccache llvm include-what-you-use pre-commit
+brew install cmake ninja ccache gcc llvm include-what-you-use pre-commit
 ```
 
 The local stack also needs Docker, for example Colima.

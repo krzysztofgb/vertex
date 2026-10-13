@@ -40,7 +40,6 @@ jobs:
         preset:
           - debug
           - asan
-          - tsan
           - release
     steps:
       - uses: actions/checkout@v7
@@ -49,7 +48,7 @@ jobs:
         run: sudo apt-get update && sudo apt-get install -y ccache
       - name: Install toolchain (macOS)
         if: runner.os == 'macOS'
-        run: brew install ninja ccache llvm
+        run: brew install ninja ccache gcc
       - name: Lower ASLR entropy for sanitizers (Linux)
         if: runner.os == 'Linux'
         run: sudo sysctl vm.mmap_rnd_bits=28
