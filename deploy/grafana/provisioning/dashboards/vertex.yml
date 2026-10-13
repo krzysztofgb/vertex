@@ -1,0 +1,7 @@
+apiVersion: 1
+providers:
+  - name: vertex
+    folder: Vertex
+    type: file
+    options:
+      path: /var/lib/grafana/dashboards

@@ -1,0 +1,9 @@
+{
+  "uid": "vertex-overview",
+  "title": "Vertex Overview",
+  "schemaVersion": 39,
+  "version": 1,
+  "refresh": "5s",
+  "time": { "from": "now-15m", "to": "now" },
+  "panels": []
+}
