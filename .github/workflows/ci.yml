@@ -15,14 +15,14 @@ jobs:
   format:
     runs-on: ubuntu-26.04
     steps:
-      - uses: actions/checkout@v4
+      - uses: actions/checkout@v7
       - name: Check formatting
         run: git ls-files '*.cpp' '*.hpp' | xargs clang-format-22 --dry-run --Werror
 
   tidy:
     runs-on: ubuntu-26.04
     steps:
-      - uses: actions/checkout@v4
+      - uses: actions/checkout@v7
       - name: Install tools
         run: sudo apt-get update && sudo apt-get install -y ccache
       - name: Configure
@@ -43,7 +43,7 @@ jobs:
           - tsan
           - release
     steps:
-      - uses: actions/checkout@v4
+      - uses: actions/checkout@v7
       - name: Install toolchain (Linux)
         if: runner.os == 'Linux'
         run: sudo apt-get update && sudo apt-get install -y ccache
@@ -53,7 +53,7 @@ jobs:
       - name: Lower ASLR entropy for sanitizers (Linux)
         if: runner.os == 'Linux'
         run: sudo sysctl vm.mmap_rnd_bits=28
-      - uses: actions/cache@v4
+      - uses: actions/cache@v6
         with:
           path: ~/.ccache
           key: ccache-${{ matrix.os }}-${{ matrix.preset }}-${{ github.sha }}
