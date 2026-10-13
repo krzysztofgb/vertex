@@ -1,0 +1,23 @@
+repos:
+  - repo: https://github.com/pre-commit/pre-commit-hooks
+    rev: v5.0.0
+    hooks:
+      - id: trailing-whitespace
+      - id: end-of-file-fixer
+      - id: check-yaml
+      - id: check-json
+        exclude: ^deploy/grafana/dashboards/
+      - id: check-merge-conflict
+  - repo: local
+    hooks:
+      - id: clang-format
+        name: clang-format
+        entry: tools/clang-format.sh
+        language: system
+        files: \.(cpp|hpp|cc|h)$
+      - id: clang-tidy
+        name: clang-tidy
+        entry: tools/clang-tidy.sh
+        language: system
+        files: \.(cpp|cc)$
+        exclude: ^build/
