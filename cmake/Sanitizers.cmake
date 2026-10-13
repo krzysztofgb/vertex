@@ -1,0 +1,11 @@
+set(VERTEX_SANITIZE "" CACHE STRING "Sanitizers to enable: address;undefined or thread")
+
+if(VERTEX_SANITIZE)
+  if("thread" IN_LIST VERTEX_SANITIZE AND "address" IN_LIST VERTEX_SANITIZE)
+    message(FATAL_ERROR "ThreadSanitizer cannot be combined with AddressSanitizer")
+  endif()
+  list(JOIN VERTEX_SANITIZE "," _vertex_san)
+  add_compile_options(-fsanitize=${_vertex_san} -fno-omit-frame-pointer -fno-sanitize-recover=all)
+  add_link_options(-fsanitize=${_vertex_san})
+  unset(_vertex_san)
+endif()
